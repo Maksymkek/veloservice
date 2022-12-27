@@ -1,0 +1,16 @@
+{%extends 'layouts.html'%}
+{% block title %}
+Bicycle stations
+{%endblock%}
+{% block content %}
+<h2>Log In</h2>
+<form method="post" class = "features">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log In</button>
+  {% if user.is_authenticated %}
+<p>Hi {{ user.username }}!</p>
+  <p><a href="{% url 'logout' %}">Log out</a></p>
+  {%endif%}
+</form>
+{%endblock%}

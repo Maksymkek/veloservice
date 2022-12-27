@@ -1,0 +1,36 @@
+{%extends 'layouts.html'%}
+{% block title %}
+Bicycle stations
+{%endblock%}
+{% block content %}
+<div class = "features">
+    <h1 >{{bikeStation.name}}</h1>
+
+    {% if user.is_staff and bikeStation.name != "All bikes" %}
+        <a href="{% url 'add_bike' bikeStation.id 'add_bike'%}" class = "btn btn-outline-success">Add bike</a>
+        {%endif%}
+    <br>
+    <br>
+    {%for bike in bikes%}
+    {%if bike.status == "free"%}
+    <a class = "bike-card" href="{% url 'bikeDetails' bike.station.id bike.id%}">
+        <img src="/media/{{bike.photo}}" width="256" height="144" class = "leftimg" >
+        {{bike.name}}<br>
+        popularity {{bike.usages}}<br>
+        {{bike.price}} $/hour
+        {%if bikeStation.name == "All bikes"%}
+        | {{bike.station.name}}
+        {%endif%}
+        </a>
+        {% if user.is_staff %}
+            <div class = "to-staff">
+            <a href="{% url 'actions' bike.station.id bike.id 'update_bike' %}" class = "btn btn-outline-info" id="to-staff-costul"><iconify-icon icon="grommet-icons:update" width="44" height="44"></iconify-icon></a><br>
+            <a href="{% url 'actions' bike.station.id bike.id 'delete_bike' %}" class = "btn btn-outline-danger" ><iconify-icon icon="fluent-mdl2:cancel" width="44" height="44"></iconify-icon></a>
+            </div>
+        {%endif%}
+    <br><br>
+    {%endif%}
+
+    {%endfor%}
+</div>
+{%endblock%}

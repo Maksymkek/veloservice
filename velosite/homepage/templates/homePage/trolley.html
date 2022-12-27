@@ -1,0 +1,23 @@
+{%extends 'layouts.html'%}
+{% block title %}
+Trolley
+{%endblock%}
+{% block content %}
+<div class = "features">
+    <h1>Trolley</h1>
+    <h2>Total price: {{totalPrice}}$</h2>
+    <a href="{% url 'make_order' 'trolley' totalPrice %}" class="btn btn-success">Make payment</a>
+    <br>
+    <div id="to_paycards">
+    <iconify-icon inline icon="logos:visaelectron" width="60" height="60"></iconify-icon>
+    <iconify-icon inline icon="logos:mastercard" width="60" height="60"></iconify-icon>
+    <iconify-icon inline icon="logos:paypal" width="60" height="60"></iconify-icon>
+    </div>
+    {%for order in trolley%}
+    <div id = "to-trolley-div">
+    <h4> {{order.bike.name}}<br>Rental price: {{ order.price }}$<br><a href="{% url 'orderAction' order.id 'hoursUP' 'in_trolley' %}" class = "btn btn-outline-success" ><iconify-icon icon="material-symbols:keyboard-arrow-up-rounded" width="28" height="28"></iconify-icon></a> {{order.usageTime}} hours <a href="{% url 'orderAction' order.id 'hoursDOWN' 'in_trolley' %}" class = "btn btn-outline-danger" ><iconify-icon icon="material-symbols:keyboard-arrow-down" width="28" height="28"></iconify-icon></a>
+    </h4><a href="{% url 'orderAction' order.id 'cancel' 'in_trolley' %}" class = "btn btn-outline-danger" id="to-trolley-cancel" ><iconify-icon icon="fluent-mdl2:cancel" width="28" height="28"></iconify-icon></a><br><br>
+    </div>
+    {%endfor%}
+</div>
+{%endblock%}

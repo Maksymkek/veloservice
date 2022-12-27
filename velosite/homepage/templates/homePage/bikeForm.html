@@ -1,0 +1,19 @@
+{%extends 'layouts.html'%}
+{% block title %}
+Add bicycle form
+{%endblock%}
+{% block content %}
+<div class = "form-features">
+    <h1>Add/update bicycle form</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.name}}<br>
+        {{form.photo}}<br>
+        {{form.usages}}<br>
+        {{form.description}}<br>
+        {{form.price}}<br>
+        <span>{{error}}</span>
+        <button class = "btn btn-outline-success" type="submit"><iconify-icon icon="material-symbols:cloud-done" width="44" height="44"></iconify-icon></button>
+    </form>
+</div>
+{%endblock%}

@@ -1,0 +1,15 @@
+{%extends 'layouts.html'%}
+{% block title %}
+Add station form
+{%endblock%}
+{% block content %}
+<div class = "form-features">
+    <h1>Add bicycle station form</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.name}}<br>
+        <span>{{error}}</span>
+        <button class = "btn btn-outline-success" type="submit"><iconify-icon icon="material-symbols:cloud-done" width="44" height="44"></iconify-icon></button>
+    </form>
+</div>
+{%endblock%}

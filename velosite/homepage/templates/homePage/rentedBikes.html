@@ -1,0 +1,25 @@
+{%extends 'layouts.html'%}
+{% block title %}
+Bicycle stations
+{%endblock%}
+{% block content %}
+<div class = "features">
+    <h1 >Your rended bikes</h1>
+
+    <br>
+    <br>
+    {%for order in orders%}
+    <a class = "bike-card" id = "to-rend-card" href="{% url 'bikeDetails' order.bike.station.id order.bike.id%}">
+        <img src="/media/{{order.bike.photo}}" width="256" height="144" class = "leftimg" >
+        Order name: {{order.bike.name}}<br>
+        Sharing time: {{order.usageTime}} hour<br>
+        Deadline: {{order.returnTime}}<br>
+        {%if user.is_staff%}
+         Holder id: {{order.bike.user}}<br>
+        <a href="{% url 'orderAction' order.id 'return-bike' 'in_trolley' %}" class="btn btn-outline-success">Order returned</a>
+        {%endif%}
+        </a>
+    <br><br>
+    {%endfor%}
+</div>
+{%endblock%}

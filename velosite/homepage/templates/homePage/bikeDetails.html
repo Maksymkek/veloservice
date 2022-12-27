@@ -1,0 +1,15 @@
+{%extends 'layouts.html'%}
+{% block title %}
+Bicycle stations
+{%endblock%}
+{% block content %}
+<div class = "features"  id ="to-details">
+    <img src="/media/{{bike.photo}}" width="717" height="402" class = "big-img" ><br><br>
+    <h1 >{{bike.name}}</h1>
+    <br>
+    <h2>Popularity: {{bike.usages}} usages | Price: {{bike.price}} $/hour</h2><br>
+    <a href="{% url 'actions' bikeStation.id bike.id 'to_trolley'%}" class="btn btn-outline-info"><h2>To trolley</h2></a><br><br>
+    <h3>{{bike.description}}</h3>
+
+</div>
+{%endblock%}
